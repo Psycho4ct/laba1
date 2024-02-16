@@ -159,7 +159,7 @@ namespace laba1
             t9.SetToolTip(buttonInfo, "О программе");
 
             System.Windows.Forms.ToolTip t10 = new System.Windows.Forms.ToolTip();
-            t10.SetToolTip(buttonHelp, "Вызов справки");
+            t10.SetToolTip(buttonHelp, "Показать справку");
 
             System.Windows.Forms.ToolTip t11 = new System.Windows.Forms.ToolTip();
             t11.SetToolTip(buttonPlay, "Пуск");
@@ -192,11 +192,6 @@ namespace laba1
             
             Next(); 
         }
-
-        private void backToolStripMenuItem_Click(object sender, EventArgs e) {Back(); }
-
-        private void nextToolStripMenuItem_Click(object sender, EventArgs e) {Next(); }
-
         private void delToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (inputTextBox.SelectedText != "")
@@ -204,21 +199,16 @@ namespace laba1
                 inputTextBox.Text = inputTextBox.Text.Remove(inputTextBox.SelectionStart, inputTextBox.SelectionLength);
             }
         }
+        private void backToolStripMenuItem_Click(object sender, EventArgs e) {Back(); }
+
+        private void nextToolStripMenuItem_Click(object sender, EventArgs e) {Next(); }
+
+       
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e) { inputTextBox.SelectAll(); }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e) {
-            //DialogResult result = MessageBox.Show("Сохранить изменения перед выходом?", "Подтверждение", MessageBoxButtons.YesNoCancel);
-            //if (result == DialogResult.Yes)
-            //{
-            //    Save();
-            //}
-            //else if (result == DialogResult.Cancel)
-            //{
-            //    // Отмена закрытия формы
-            //    return;
-            //}
-
+       
             Application.Exit();
 
         }
@@ -233,7 +223,21 @@ namespace laba1
                 File.WriteAllText(saveFileDialog.FileName, inputTextBox.Text);
             }
         }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                Save();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                // Отмена закрытия формы
+                return;
+            }
 
+
+        }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e) { Create(); }
@@ -256,21 +260,7 @@ namespace laba1
             outputTextBox.Height = splitContainer1.Panel2.Height;
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Сохранить изменения перед выходом?", "Подтверждение", MessageBoxButtons.YesNoCancel);
-            if (result == DialogResult.Yes)
-            {
-                Save();
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                // Отмена закрытия формы
-                return;
-            }
-
-            
-        }
+       
 
         private void inputTextBox_Load(object sender, EventArgs e)
         {
