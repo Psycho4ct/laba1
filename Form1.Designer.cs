@@ -331,7 +331,7 @@
             this.outputTextBox.ReadOnly = true;
             this.outputTextBox.Size = new System.Drawing.Size(960, 201);
             this.outputTextBox.TabIndex = 4;
-            this.outputTextBox.Text = "";
+            this.outputTextBox.Text = "Здесь должны быть ошибки";
             // 
             // splitContainer1
             // 
